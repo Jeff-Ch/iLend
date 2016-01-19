@@ -2,8 +2,8 @@
 	<div class = "col s4 push-s4">
 		<h4>Login</h4>
 		<form action="/sessions/login" method='post'>
-			<input placeholder= "Email" type='text' name='user[email]'>
-			<input placeholder= "Password" type='password' name='user[password]'>
+			<input class='validate' required placeholder= "Email" type='email' name='user[email]'>
+			<input class='validate' required placeholder= "Password" type='password' name='user[password]'>
 			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 			<button class="btn waves-effect waves-light" type="submit" name="action">Login
 			</button>

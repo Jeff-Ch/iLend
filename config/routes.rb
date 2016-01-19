@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   post "/lenders/create" => "lenders#create"
   post "/borrowers/create" => "borrowers#create"
+  post "/sessions/login" => "sessions#login_attempt"
 
   
 
