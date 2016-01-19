@@ -1,0 +1,18 @@
+<div class = "row">
+	<div class = "col s4 push-s4">
+		<h5 class = 'center'>Register as a Lender</h5>
+		<form action="/lender/create" method = 'post'>
+			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+			<input placeholder= "First Name" type='text' name='lender[first_name]'>
+			<input placeholder= "Last Name" type='text' name='lender[last_name]'>
+			<input placeholder= "Email" type='text' name='lender[email]'>
+			<input placeholder= "Password" type='password' name='lender[password]'>
+			<p>Password must be a minimum of 6 characters</p>
+			<input placeholder='Money' type = 'number' name ='lender[money]'>
+			<button class="btn waves-effect waves-light" type="submit" name="action">Register</button>
+		</form>
+	</div>
+</div>
+<div class='center'>
+	<a href="/" class="btn waves-effect blue accent-2 waves-light">Back</a>
+</div>
