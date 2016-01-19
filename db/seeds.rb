@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Lenders.create(first_name: 'John', last_name: 'Doe', email: 'test@gmail.com', password: '123456');
+Lender.create(first_name: 'John', last_name: 'Doe', email: 'test@gmail.com', password: '123456', password_confirmation: '123456');

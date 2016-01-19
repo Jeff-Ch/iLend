@@ -1,15 +1,17 @@
 <div class = "row">
 	<div class = "col s4 push-s4">
 		<h5 class = 'center'>Register as a Lender</h5>
-		<form action="/lender/create" method = 'post'>
+		<form action="/lenders/create" method = 'post'>
 			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-			<input placeholder= "First Name" type='text' name='lender[first_name]'>
-			<input placeholder= "Last Name" type='text' name='lender[last_name]'>
-			<input placeholder= "Email" type='text' name='lender[email]'>
-			<input placeholder= "Password" type='password' name='lender[password]'>
-			<p>Password must be a minimum of 6 characters</p>
-			<input placeholder='Money' type = 'number' name ='lender[money]'>
-			<button class="btn waves-effect waves-light" type="submit" name="action">Register</button>
+			<input placeholder= "First Name" class='validate' required pattern="[A-Za-z]{2,}" type='text' name='lender[first_name]'>
+			<input placeholder= "Last Name" class='validate' required pattern="[A-Za-z]{2,}" type='text' name='lender[last_name]'>
+			<input placeholder= "Email" class='validate' type='email' name='lender[email]' required>
+			<p>*Password must be a minimum of 6 characters</p>
+			<input placeholder= "Password" class='validate' required minlength='6' type='password' name='lender[password]'>
+			<input class='validate' placeholder= "Password Confirmation" type='password' name='lender[password_confirmation]' required minlength='6'>
+			<div class='center'>
+			<button class="btn waves-effect waves-light green accent-3" type="submit" name="action">Register</button>
+		</div>
 		</form>
 	</div>
 </div>

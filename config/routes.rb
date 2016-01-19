@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   resources :lenders
   resources :borrowers
 
+  post "/lenders/create" => "lenders#create"
+  post "/borrowers/create" => "borrowers#create"
+
   
 
 
