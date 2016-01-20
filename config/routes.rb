@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'sessions/login'
 
-  get 'sessions/logout'
+  
 
   get 'index/login'
 
@@ -17,18 +17,23 @@ Rails.application.routes.draw do
 
   get 'borrowers/create'
 
-  get "/sessions/borrower_register" => "sessions#borrower_register"
-
-  get "/sessions/lender_register" => "sessions#lender_register"
+  
 
   root 'sessions#index'
+  get 'sessions/logout'
+  post "/lenders/create"
+  post "/borrowers/create" 
+  post "/sessions/login" => "sessions#login_attempt"
+  get "/sessions/borrower_register"
+
+  get "/sessions/lender_register" 
+  get "/lenders/deposit" => "lenders#deposit"
+  post "/lenders/deposit_confirmation" => "lenders#deposit_confirmation"
 
   resources :lenders
   resources :borrowers
 
-  post "/lenders/create" => "lenders#create"
-  post "/borrowers/create" => "borrowers#create"
-  post "/sessions/login" => "sessions#login_attempt"
+
 
   
 

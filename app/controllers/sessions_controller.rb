@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
 	def index
+		session.clear
 	end
 
 	def login_attempt
@@ -22,5 +23,7 @@ class SessionsController < ApplicationController
 	end
 
 	def logout
+		session.clear
+		redirect_to "/"
 	end
 end
