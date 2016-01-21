@@ -1,23 +1,22 @@
-<p class='center'>Deposit Confirmation:</p>
-<p class='center'>You are about to deposit $ <%= @amt %> into your account.</p>
-<form class='center' action = '/orders/new' method = 'post'>
+<div class='row'>
+      <p class='center'>Deposit Confirmation:</p>
+<p class='center'>You are about to deposit $ <%= @amt/100 %> into your account.</p>
+<form class='center' action = '/lenders/deposited' method = 'post'>
       <script
       src="https://checkout.stripe.com/checkout.js" class="stripe-button"
       data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
       data-image="http://3.imimg.com/data3/OP/YH/MY-14426176/e-commerce-250x250.png"
-      data-name="MiniStore"
-      data-description="TEST"
+      data-name="iLend"
+      data-description="Depositing Money into Account"
       data-amount="<%= @amt %>"
-      data-billing-address=true
-      data-zip-code=true
-      data-shipping-address=true
       data-locale="auto"
       data-email="<%= @email %>"
       data-label="Confirm">
       </script>
-      <input type='hidden' name='cart_contents' value= '<%= @products %>'>
+      <input type='hidden' name='amt' value= '<%= @amt %>'>
       <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 </form>
-<div class='center'>
-      <a href="/lenders" class="btn waves-effect blue accent-2 waves-light">Back</a>
+</div>
+<div class='center push s4'>
+      <a href="/lenders" class="btn waves-effect green lighten-1 waves-light">Back</a>
 </div>

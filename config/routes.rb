@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post "/borrowers/create" 
   post "/sessions/login" => "sessions#login_attempt"
   get "/sessions/borrower_register"
+  post "/lenders/deposited" => "lenders#deposited"
 
   get "/sessions/lender_register" 
   get "/lenders/deposit" => "lenders#deposit"

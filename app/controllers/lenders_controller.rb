@@ -32,7 +32,20 @@ class LendersController < ApplicationController
 	end
 
 	def deposit_confirmation
-		@amt = params[:amt];
+		@amt = params[:amt].to_i * 100
+		@email = Lender.find(session[:lender_id]).email
+	end
+
+	def deposited
+		@lender = Lender.find(session[:lender_id])
+		if @lender.money == 0
+			@lender.attributes = {:money => params[:amt].to_i/100}
+		else
+			@amt = @lender.money + params[:amt].to_i/100
+			@lender.attributes = {:money => @amt}
+		end
+		@lender.save(:validate => false)
+		redirect_to "/lenders"
 	end
 
 	private

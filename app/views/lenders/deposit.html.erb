@@ -3,7 +3,7 @@
             <p class='center'>Enter Your Desired Deposit Amount</p>
             <form action="/lenders/deposit_confirmation" method='post'>
                   <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-                <input class='center' type='number' name='amt'>
+                <input class='center validate' required type='number' name='amt'>
                 <div class='center'>
                       <button class="btn waves-effect waves-light" type="submit" name="action">Deposit</button>
                 </div>
