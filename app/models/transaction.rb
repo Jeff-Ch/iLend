@@ -1,4 +1,4 @@
 class Transaction < ActiveRecord::Base
   belongs_to :lender
-  belongs_to :borrower
+  belongs_to :request
 end

@@ -2,10 +2,10 @@
 
 one:
   lender_id: 
-  borrower_id: 
+  request_id: 
   money: 1
 
 two:
   lender_id: 
-  borrower_id: 
+  request_id: 
   money: 1

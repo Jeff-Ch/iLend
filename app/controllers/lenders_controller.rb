@@ -8,11 +8,11 @@ class LendersController < ApplicationController
 		Transaction.where(:lender_id => session[:lender_id]).each do |trans|
 			@total_lent += trans.money
 			@lent_to_one = trans.money
-			@temp = [Borrower.find(trans.borrower_id), @lent_to_one]
+			@temp = [Request.joins(:borrower).find(trans.request_id), @lent_to_one]
 			@lent_to.push(@temp)
 		end
 		@balance = @lender.money - @total_lent
-		@borrowers = Borrower.all
+		@requests = Request.joins(:borrower).where(:money > :money_raised)
 	end
 
 	def create
@@ -33,33 +33,31 @@ class LendersController < ApplicationController
 			flash[:error] = ["Insufficient Funds"]
 			redirect_to "/lenders"
 		else
-			@trans = Transaction.where(:lender_id => session[:lender_id]).where(:borrower_id => params[:id]).first
+			@trans = Transaction.where(:lender_id => session[:lender_id]).where(:request_id=> params[:id]).first
 			if @trans
-				
 				@total = params[:amount].to_f + @trans.money
 				Transaction.update(@trans.id, :money => @total)
-				@amount_raised = Borrower.find(params[:id]).money_raised
+				@amount_raised = Request.find(params[:id]).money_raised
 				if @amount_raised == 0
 					@total = params[:amount]
 				else
 					@total = @amount_raised + params[:amount].to_i
 				end
-				@borrower = Borrower.find(params[:id])
-				@borrower.attributes = {:money_raised => @total}
-				@borrower.save(:validate => false)
+				@request = Request.find(params[:id])
+				@request.attributes = {:money_raised => @total}
+				@request.save(:validate => false)
 			else
-				
-				Transaction.create(:lender_id => session[:lender_id], :borrower_id => params[:id], :money => params[:amount])
-				@amount_raised = Borrower.find(params[:id]).money_raised
+				Transaction.create(:lender_id => session[:lender_id], :request_id => params[:id], :money => params[:amount])
+				@amount_raised = Request.find(params[:id]).money_raised
 				if @amount_raised == 0
 					@total = params[:amount]
 
 				else
 					@total = @amount_raised + params[:amount].to_i
 				end
-				@borrower = Borrower.find(params[:id])
-				@borrower.attributes = {:money_raised => @total}
-				@borrower.save(:validate => false)
+				@request = Request.find(params[:id])
+				@request.attributes = {:money_raised => @total}
+				@request.save(:validate => false)
 			end
 			redirect_to "/lenders"
 		end

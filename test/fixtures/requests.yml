@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  purpose: MyString
+  description: MyString
+  money: 1
+  money_raised: 1
+  borrower_id: 
+
+two:
+  purpose: MyString
+  description: MyString
+  money: 1
+  money_raised: 1
+  borrower_id: 

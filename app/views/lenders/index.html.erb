@@ -33,16 +33,16 @@
         </tr>
       </thead>
       <tbody>
-        <% @borrowers.each do |borrower| %>
+        <% @requests.each do |request| %>
         <tr>
-          <th><%= borrower.first_name %> <%= borrower.last_name %></th>
-          <th><%= borrower.purpose %></th>
-          <th><%= borrower.description %></th>
-          <th><%= borrower.money %></th>
-          <th><%= borrower.money_raised %></th>
+          <th><%= request.borrower.first_name %> <%= request.borrower.last_name %></th>
+          <th><%= request.purpose %></th>
+          <th><%= request.description %></th>
+          <th><%= request.money %></th>
+          <th><%= request.money_raised %></th>
           <th>
             <div class='row'>
-              <form class = 'col s9' action = '/lenders/lend/<%= borrower.id %>' method = 'post'>
+              <form class = 'col s9' action = '/lenders/lend/<%= request.id %>' method = 'post'>
                 <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
                 <input type='hidden' name='balance' value='<%= @balance %>'>
                 <select class = 'browser-default' name = 'amount'>
@@ -82,7 +82,7 @@
       <tbody>
         <% @lent_to.each do |borrower| %>
         <tr>
-          <th><%= borrower[0].first_name %> <%= borrower[0].last_name %></th>
+          <th><%= borrower[0].borrower.first_name %> <%= borrower[0].borrower.last_name %></th>
           <th><%= borrower[0].purpose %></th>
           <th><%= borrower[0].description %></th>
           <th><%= borrower[0].money %></th>

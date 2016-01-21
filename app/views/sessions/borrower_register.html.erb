@@ -9,11 +9,11 @@
 			<p>*Password must be a minimum of 6 characters</p>
 			<input placeholder= "Password" class='validate' required minlength='6' type='password' name='borrower[password]'>
 			<input class='validate' placeholder= "Password Confirmation" type='password' name='borrower[password_confirmation]' required minlength='6'>
-			<input class='validate' required minlength='3' placeholder= 'Need Money For' type='text' name='borrower[purpose]'>
+			<input class='validate' required minlength='3' placeholder= 'Need Money For' type='text' name='request[purpose]'>
 			<label for="textarea1">Description</label>
-			<textarea id="textarea1" class="materialize-textarea validate" required minlength='10' name='borrower[description]'></textarea>
-			<input class='validate' required placeholder='Amount Needed' type = 'number' step = '0.01' name ='borrower[money]'>
-			<input type='hidden' name='borrower[money_raised]' value = "0">
+			<textarea id="textarea1" class="materialize-textarea validate" required minlength='10' name='request[description]'></textarea>
+			<input class='validate' required placeholder='Amount Needed' type = 'number' step = '0.01' name ='request[money]'>
+			<input type='hidden' name='request[money_raised]' value = "0">
 			<button class="btn waves-effect waves-light" type="submit" name="action">Register
 			</button>
 		</form>
