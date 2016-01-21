@@ -26,10 +26,12 @@ Rails.application.routes.draw do
   post "/sessions/login" => "sessions#login_attempt"
   get "/sessions/borrower_register"
   post "/lenders/deposited" => "lenders#deposited"
+  get "/lenders/history" => "lenders#history"
 
   get "/sessions/lender_register" 
   get "/lenders/deposit" => "lenders#deposit"
   post "/lenders/deposit_confirmation" => "lenders#deposit_confirmation"
+  post "/lenders/lend/:id" => "lenders#lend"
 
   resources :lenders
   resources :borrowers

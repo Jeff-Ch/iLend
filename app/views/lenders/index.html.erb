@@ -1,84 +1,96 @@
 
-
+<div class='row'>
+  <div class='col s2 push-s1'>
+<a href="/lenders/deposit" class="btn waves-effect green accent-4 waves-light">Add Money</a>
+</div>
+<div class='col s3 push-s1'>
+<a href="/lenders/history" class="btn waves-effect orange accent-3 waves-light">Deposit History</a>
+</div>
+  <div class='col s2 right'>
 <a href="/sessions/logout" class="btn waves-effect blue accent-2 waves-light">Log Out</a>
-<a href="/lenders/deposit" class="btn waves-effect blue accent-2 waves-light">Add Money</a>
-
-
-  <h5>Name: <%= @lender.first_name %> <%= @lender.last_name %></h5>
-  <h5>Amount Balance: $<%= @balance %></h5>
-
-  <h5>List of people in need of help:</h5>
-  <div class = "row">
-  <div class = "col s10 offset-m1">
-  <table>
-  	<thead>
-  		<tr>
-  			<th>Name</th>
-  			<th>Need Money for</th>
-  			<th>Reason for Loan</th>
-  			<th>Amount Needed</th>
-  			<th>Amount Raised</th>
-  			<th>Action</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<% @borrowers.each do |borrower| %>
-  		<tr>
-  			<th><%= borrower.first_name %> <%= borrower.last_name %></th>
-  			<th><%= borrower.purpose %></th>
-  			<th><%= borrower.description %></th>
-  			<th><%= borrower.money %></th>
-  			<th><%= borrower.money_raised %></th>
-  			<th>
-  				<div class='row'>
-  					<form class = 'col s9' action = '/lender/<%= borrower.id %>/lend' method = 'post'>
-  						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-  						<input type='hidden' name='balance' value='<%= @balance %>'>
-  						<select class = 'browser-default' name = 'amount'>
-  							<option value="" disabled selected></option>
-  							<option value="25">$25</option>
-  							<option value="50">$50</option>
-  							<option value="75">$75</option>
-  							<option value="100">$100</option>
-  						</select>
-  						<button class="btn waves-effect waves-light" type="submit" name="action">Lend</button>
-  					</form>
-  				</div>
-  			</div>
-  		</th>
-  	</tr>
-  	<% end %>
-  </tbody>
-</table>
-</div>
 </div>
 
-<h5>List of people you lend money to:</h5>
+</div>
+
+<div class='row'>
+    <h5>Amount Balance: $<%= @balance %></h5>
+</div>
+  
+<div class='row'>
+<h5 class='col s4'>List of people in need of help:</h5>
+</div>
 <div class = "row">
   <div class = "col s10 offset-m1">
-<table>
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Need Money for</th>
-			<th>Reason for Loan</th>
-			<th>Amount Needed</th>
-			<th>Amount Raised</th>
-			<th>Amount Lent</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @lent_to.each do |borrower| %>
-		<tr>
-			<th><%= borrower[0].first_name %> <%= borrower[0].last_name %></th>
-			<th><%= borrower[0].purpose %></th>
-			<th><%= borrower[0].description %></th>
-			<th><%= borrower[0].money %></th>
-			<th><%= borrower[0].money_raised %></th>
-			<th><%= borrower[1] %></th>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Need Money for</th>
+          <th>Reason for Loan</th>
+          <th>Amount Needed</th>
+          <th>Amount Raised</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @borrowers.each do |borrower| %>
+        <tr>
+          <th><%= borrower.first_name %> <%= borrower.last_name %></th>
+          <th><%= borrower.purpose %></th>
+          <th><%= borrower.description %></th>
+          <th><%= borrower.money %></th>
+          <th><%= borrower.money_raised %></th>
+          <th>
+            <div class='row'>
+              <form class = 'col s9' action = '/lenders/lend/<%= borrower.id %>' method = 'post'>
+                <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                <input type='hidden' name='balance' value='<%= @balance %>'>
+                <select class = 'browser-default' name = 'amount'>
+                  <option value="" disabled selected></option>
+                  <option value="25">$25</option>
+                  <option value="50">$50</option>
+                  <option value="75">$75</option>
+                  <option value="100">$100</option>
+                </select>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Lend</button>
+              </form>
+            </div>
+          </div>
+        </th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+</div>
+<div class='row'>
+<h5 class='col s4'>List of people you lend money to:</h5>
+</div>
+<div class = "row">
+  <div class = "col s10 offset-m1">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Need Money for</th>
+          <th>Reason for Loan</th>
+          <th>Amount Needed</th>
+          <th>Amount Raised</th>
+          <th>Amount Lent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @lent_to.each do |borrower| %>
+        <tr>
+          <th><%= borrower[0].first_name %> <%= borrower[0].last_name %></th>
+          <th><%= borrower[0].purpose %></th>
+          <th><%= borrower[0].description %></th>
+          <th><%= borrower[0].money %></th>
+          <th><%= borrower[0].money_raised %></th>
+          <th><%= borrower[1] %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

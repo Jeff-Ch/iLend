@@ -29,6 +29,40 @@ class LendersController < ApplicationController
 	end
 
 	def lend
+		if params[:balance].to_f < params[:amount].to_f
+			flash[:error] = ["Insufficient Funds"]
+			redirect_to "/lenders"
+		else
+			@trans = Transaction.where(:lender_id => session[:lender_id]).where(:borrower_id => params[:id]).first
+			if @trans
+				
+				@total = params[:amount].to_f + @trans.money
+				Transaction.update(@trans.id, :money => @total)
+				@amount_raised = Borrower.find(params[:id]).money_raised
+				if @amount_raised == 0
+					@total = params[:amount]
+				else
+					@total = @amount_raised + params[:amount].to_i
+				end
+				@borrower = Borrower.find(params[:id])
+				@borrower.attributes = {:money_raised => @total}
+				@borrower.save(:validate => false)
+			else
+				
+				Transaction.create(:lender_id => session[:lender_id], :borrower_id => params[:id], :money => params[:amount])
+				@amount_raised = Borrower.find(params[:id]).money_raised
+				if @amount_raised == 0
+					@total = params[:amount]
+
+				else
+					@total = @amount_raised + params[:amount].to_i
+				end
+				@borrower = Borrower.find(params[:id])
+				@borrower.attributes = {:money_raised => @total}
+				@borrower.save(:validate => false)
+			end
+			redirect_to "/lenders"
+		end
 	end
 
 	def deposit_confirmation
@@ -45,7 +79,12 @@ class LendersController < ApplicationController
 			@lender.attributes = {:money => @amt}
 		end
 		@lender.save(:validate => false)
+		History.create(:lender_id => session[:lender_id], :money => params[:amt].to_i/100)
 		redirect_to "/lenders"
+	end
+
+	def history
+		@deposits = History.where(:lender_id => session[:lender_id])
 	end
 
 	private

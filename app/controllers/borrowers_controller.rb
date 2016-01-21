@@ -2,6 +2,21 @@ class BorrowersController < ApplicationController
 	before_action :require_login, except: [:create, :index]
 
 	def index
+		@borrower = Borrower.find(session[:borrower_id])
+		@total_raised = 0
+		@lent_from = []
+		Transaction.where(:borrower_id => session[:borrower_id]).each do |trans|
+			@total_raised += trans.money
+			@from_one = trans.money
+			@temp = [Lender.find(trans.lender_id), @from_one]
+			@lent_from.push(@temp)
+		end
+		if @total_raised != 0
+			puts @total_raised
+			@progress = @total_raised / @borrower.money * 200
+		else
+			@progress = 0
+		end
 	end
 
 	def create

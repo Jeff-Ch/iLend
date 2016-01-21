@@ -42,4 +42,15 @@
   .loginbtn{
     margin-top: 200px;
   }
+  #overall_bar{
+    width: 200px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: grey;
+  }
+  #progress{
+    height: 20px;
+    border-radius: 10px;
+    background-color: #00c853;
+  }
   </style>
