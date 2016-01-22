@@ -12,7 +12,8 @@
 			<input class='validate' required minlength='3' placeholder= 'Need Money For' type='text' name='request[purpose]'>
 			<label for="textarea1">Description</label>
 			<textarea id="textarea1" class="materialize-textarea validate" required minlength='10' name='request[description]'></textarea>
-			<input class='validate' required placeholder='Amount Needed' type = 'number' step = '0.01' name ='request[money]'>
+			<p>*Money must be a multiple of $25</p>
+			<input class='validate' required placeholder='Amount Needed' type = 'number' name ='request[money]'>
 			<input type='hidden' name='request[money_raised]' value = "0">
 			<button class="btn waves-effect waves-light" type="submit" name="action">Register
 			</button>

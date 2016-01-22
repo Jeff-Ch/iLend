@@ -33,6 +33,10 @@ Rails.application.routes.draw do
   post "/lenders/deposit_confirmation" => "lenders#deposit_confirmation"
   post "/lenders/lend/:id" => "lenders#lend"
 
+  get "/borrowers/complete" => "borrowers#complete"
+  post "/borrowers/payback/:id" => "borrowers#payback_confirmation"
+  post "/borrowers/payback" => "borrowers#payback"
+
   resources :lenders
   resources :borrowers
 

@@ -7,11 +7,12 @@
 	</div>
 </div>
 	<div class = "row">
-		<div class = "col s8 offset-m2">
+		<div class = "col s10 push-s1">
 			<table class='striped'>
 				<thead>
 					<tr>
 						<th class='center'>Confirmation Number</th>
+						<th class='center'>Description</th>
 						<th class='center'>Amount Deposited</th>
 						<th class='center'>Date and Time</th>
 					</tr>
@@ -20,7 +21,12 @@
 					<% @deposits.each do |deposit| %>
 					<tr>
 						<th class='center'><%= deposit.id %></th>
-						<th class='center'>$ <%= deposit.money %></th>
+						<th class='center'><%= deposit.source %></th>
+						<% if deposit.direction == "in" %>
+						<th class='center' style='color:green'>+ $ <%= deposit.money %></th>
+						<% else %>
+						<th class='center' style='color:red'>- $ <%= deposit.money %></th>
+						<% end %>
 						<th class='center'><%= deposit.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%D %l:%M %p") %></th>
 					</tr>
 					<% end %>

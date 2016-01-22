@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121050702) do
+ActiveRecord::Schema.define(version: 20160122023107) do
 
   create_table "borrowers", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,6 +26,8 @@ ActiveRecord::Schema.define(version: 20160121050702) do
   create_table "histories", force: true do |t|
     t.integer  "lender_id"
     t.integer  "money"
+    t.string   "source"
+    t.string   "direction"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,6 +43,20 @@ ActiveRecord::Schema.define(version: 20160121050702) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "paybacks", force: true do |t|
+    t.integer  "borrower_id"
+    t.integer  "lender_id"
+    t.integer  "money"
+    t.integer  "money_lent"
+    t.integer  "request_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "paybacks", ["borrower_id"], name: "index_paybacks_on_borrower_id"
+  add_index "paybacks", ["lender_id"], name: "index_paybacks_on_lender_id"
+  add_index "paybacks", ["request_id"], name: "index_paybacks_on_request_id"
 
   create_table "requests", force: true do |t|
     t.string   "purpose"
@@ -57,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160121050702) do
     t.integer  "lender_id"
     t.integer  "request_id"
     t.integer  "money"
+    t.integer  "paid_back"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

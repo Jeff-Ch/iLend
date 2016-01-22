@@ -3,7 +3,11 @@
 one:
   lender_id: 
   money: 1
+  source: MyString
+  direction: MyString
 
 two:
   lender_id: 
   money: 1
+  source: MyString
+  direction: MyString

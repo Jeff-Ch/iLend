@@ -1,0 +1,26 @@
+<div class='row'>
+      <p class='center'>Pay Back Confirmation:</p>
+<p class='center'>You are about to pay $ <%= @amt/100 %> back to <%= @name %>.</p>
+<form class='center' action = '/borrowers/payback' method = 'post'>
+      <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+      data-image="http://3.imimg.com/data3/OP/YH/MY-14426176/e-commerce-250x250.png"
+      data-name="iLend"
+      data-description="Depositing Money into Account"
+      data-amount="<%= @amt %>"
+      data-locale="auto"
+      data-email="<%= @email %>"
+      data-label="Confirm">
+      </script>
+      <input type='hidden' name='lender_id' value= '<%= @info[:lender_id] %>'>
+      <input type='hidden' name='money_lent' value= '<%= @info[:money_lent] %>'>
+      <input type='hidden' name='balance' value= '<%= @info[:balance] %>'>
+      <input type='hidden' name='amount' value= '<%= @info[:amount] %>'>
+      <input type='hidden' name='id' value= '<%= @info[:id] %>'>
+      <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+</form>
+</div>
+<div class='center push s4'>
+      <a href="/borrowers/complete" class="btn waves-effect green lighten-1 waves-light">Back</a>
+</div>

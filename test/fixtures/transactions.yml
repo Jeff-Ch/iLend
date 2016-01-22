@@ -4,8 +4,10 @@ one:
   lender_id: 
   request_id: 
   money: 1
+  paid_back: 1
 
 two:
   lender_id: 
   request_id: 
   money: 1
+  paid_back: 1

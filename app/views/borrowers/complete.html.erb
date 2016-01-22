@@ -1,0 +1,66 @@
+<div class='row'>
+  <div class='col s2 right'>
+    <a href="/sessions/logout" class="btn waves-effect blue accent-2 waves-light">Log Out</a>
+  </div>
+</div>
+
+
+<h5 class="center" style="font-weight: bold">Congrats on being fully funded, Begin paying back your lenders below.</h5>
+
+<h5 style="font-weight: bold" class='center style1'>Lenders</h5>
+<div class = "row">
+  <div class = "col s10 offset-m1">
+    <table>
+      <thead>
+        <tr>
+          <th class='center'>Name</th>
+          <th class='center'>Email</th>
+          <th class='center'>Amount Lent</th>
+          <th class='center'>Status</th>
+          <th class='center'>Amount Paid</th>
+          <th class='center'>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @lent_from.each do |lender| %>
+        <tr>
+          <th class='center'><%= lender[0].first_name %> <%= lender[0].last_name %></th>
+          <th class='center'><%= lender[0].email %></th>
+          <th class='center'>$ <%= lender[1] %></th>
+          <th class='center'>
+            <div class='row'>
+              <div id = "mini_bar">
+                <div id ='miniprogress' style='width: <%= lender[3] * 125 / lender[1] %>px'>
+                </div>
+              </div>
+            </div>
+          </th>
+          <th class='center'>$ <%= lender[3] %></th>
+          <th class='center'>
+            <div class='row'>
+              <% if lender[1] == lender[3] %>
+              <button class="btn waves-effect waves-light grey col s8 push-s2">Completed!</button>
+              <% else %>
+              <form action = '/borrowers/payback/<%= lender[2] %>' method = 'post'>
+                <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                <input type ='hidden' name='lender_id' value='<%= lender[0].id %>'>
+                <input type ='hidden' name='money_lent' value ='<%= lender[1] %>'>
+                <input type='hidden' name='balance' value='<%= lender[1] - lender[3] %>'>
+                <select class = 'browser-default col s5 push-s1' name = 'amount'>
+                  <option value="" disabled selected></option>
+                  <option value="25">$25</option>
+                  <option value="50">$50</option>
+                  <option value="75">$75</option>
+                  <option value="100">$100</option>
+                </select>
+                <button class="btn waves-effect waves-light col s5 push-s2" type="submit" name="action">Pay Back</button>
+                <% end %>
+              </form>
+            </div>
+          </div>
+        </th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

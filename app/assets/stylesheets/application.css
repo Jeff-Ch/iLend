@@ -44,12 +44,12 @@
   }
   #overall_bar{
     width: 200px;
-    height: 30px;
+    height: 20px;
     border-radius: 10px;
     background-color: grey;
   }
   #progress{
-    height: 30px;
+    height: 20px;
     border-radius: 10px;
     background-color: #00c853;
   }
@@ -57,7 +57,8 @@
     margin-top: 50px;
   }
   #mini_bar{
-    margin-left:50px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 15px;
     width: 125px;
     height: 15px;
@@ -65,9 +66,9 @@
     background-color: grey;
   }
   #miniprogress{
-
     height: 15px;
     border-radius: 10px;
     background-color: #00c853;
   }
+
   </style>
