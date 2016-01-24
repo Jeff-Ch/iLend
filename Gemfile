@@ -35,7 +35,6 @@ gem 'rename'
 
 gem 'passenger'
 
-gem 'rails-footnotes','>=4.0.0','<5'
 
 # Use unicorn as the app server
 # gem 'unicorn'
